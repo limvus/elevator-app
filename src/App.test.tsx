@@ -73,6 +73,7 @@ describe("elevators are functioning properly", () => {
        floor20.simulate("click");
        elevator1= wrapper.find(".app__elevator-1");
        expect(elevator1.hasClass("app__elevator--floor-20")).toBeTruthy();
+       // @ts-ignore
        expect(elevator1.prop('style').marginBottom).toEqual(20 * (20 - 1));
 
        // when clicked on floor 9, the second elevator should move to the floor
@@ -80,6 +81,7 @@ describe("elevators are functioning properly", () => {
        floor9.simulate("click");
        elevator2 = wrapper.find(".app__elevator-2");
        expect(elevator2.hasClass("app__elevator--floor-9")).toBeTruthy();
+       // @ts-ignore
        expect(elevator2.prop('style').marginBottom).toEqual(20 * (9 - 1));
 
        // when clicked on floor 3, the third elevator should move to the floor
@@ -87,6 +89,7 @@ describe("elevators are functioning properly", () => {
        floor3.simulate("click");
        elevator3 = wrapper.find(".app__elevator-3");
        expect(elevator3.hasClass("app__elevator--floor-3")).toBeTruthy();
+       // @ts-ignore
        expect(elevator3.prop('style').marginBottom).toEqual(20 * (3 - 1));
 
        // when clicked on floor 15, the first elevator should move to the floor
@@ -94,6 +97,7 @@ describe("elevators are functioning properly", () => {
        floor15.simulate("click");
        elevator1 = wrapper.find(".app__elevator-1");
        expect(elevator1.hasClass("app__elevator--floor-15")).toBeTruthy();
+       // @ts-ignore
        expect(elevator1.prop('style').marginBottom).toEqual(20 * (15 - 1));
 
        // when clicked on floor 8, the second elevator should move to the floor
@@ -101,6 +105,7 @@ describe("elevators are functioning properly", () => {
        floor8.simulate("click");
        elevator2 = wrapper.find(".app__elevator-2");
        expect(elevator2.hasClass("app__elevator--floor-8")).toBeTruthy();
+       // @ts-ignore
        expect(elevator2.prop('style').marginBottom).toEqual(20 * (8 - 1));
 
        // when clicked on floor 5, the third elevator should move to the floor
@@ -108,6 +113,7 @@ describe("elevators are functioning properly", () => {
        floor5.simulate("click");
        elevator3 = wrapper.find(".app__elevator-3");
        expect(elevator3.hasClass("app__elevator--floor-5")).toBeTruthy();
+       // @ts-ignore
        expect(elevator3.prop('style').marginBottom).toEqual(20 * (5 - 1));
    });
 });
