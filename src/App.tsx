@@ -1,7 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
+import classNames from 'classnames';
 import './App.css';
 
 function App() {
+    const [positions, setPositions] = useState([1, 1, 1]);
+
+    const [elevatorCount] = useState(3);
+    const [floorCount] = useState(20);
+    const floorClickHandler = (e: React.MouseEvent, floorNo: number) => {
+        let minDiff = Infinity;
+        let index = 0;
+        positions.forEach((value, i) => {
+            let diff = Math.abs(floorNo - value);
+            if (diff < minDiff) {
+                minDiff = diff;
+                index = i;
+            }
+        });
+
+        let newPositions = positions.slice();
+        newPositions[index] = floorNo;
+        setPositions(newPositions);
+    }
+
     return (
         <div className="app">
             <header className="app__header">
@@ -10,37 +31,35 @@ function App() {
 
             <div className="app__content">
                 <div className="app__elevator-section">
-                    <div className="app__elevator-path">
-                        <div className="app__elevator app__elevator--1">E1</div>
-                    </div>
-                    <div className="app__elevator-path app__elevator--2">
-                        <div className="app__elevator">E2</div>
-                    </div>
-                    <div className="app__elevator-path app__elevator--3">
-                        <div className="app__elevator">E3</div>
-                    </div>
+                    {
+                        Array.from(Array(elevatorCount), (_, i) => {
+                            return (
+                                <div key={i} className="app__elevator-path">
+                                    <div
+                                        style={{marginBottom: 20 * (positions[i] - 1)}}
+                                        className={classNames(
+                                            "app__elevator app__elevator-" + (i + 1),
+                                            "app__elevator--floor-" + positions[i]
+                                        )}
+                                    >{"E" + (i + 1)}</div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
                 <div className="app__floor-section">
-                    <div className="app__floor">Floor 20</div>
-                    <div className="app__floor">Floor 19</div>
-                    <div className="app__floor">Floor 18</div>
-                    <div className="app__floor">Floor 17</div>
-                    <div className="app__floor">Floor 16</div>
-                    <div className="app__floor">Floor 15</div>
-                    <div className="app__floor">Floor 14</div>
-                    <div className="app__floor">Floor 13</div>
-                    <div className="app__floor">Floor 12</div>
-                    <div className="app__floor">Floor 11</div>
-                    <div className="app__floor">Floor 10</div>
-                    <div className="app__floor">Floor 9</div>
-                    <div className="app__floor">Floor 8</div>
-                    <div className="app__floor">Floor 7</div>
-                    <div className="app__floor">Floor 6</div>
-                    <div className="app__floor">Floor 5</div>
-                    <div className="app__floor">Floor 4</div>
-                    <div className="app__floor">Floor 3</div>
-                    <div className="app__floor">Floor 2</div>
-                    <div className="app__floor">Floor 1</div>
+                    {
+                        Array.from(Array(floorCount), (_, i) => {
+                            return (
+                                <div key={i}
+                                     className={"app__floor app__floor-" + (floorCount - i)}
+                                     onClick={(e) => floorClickHandler(e, floorCount - i)}
+                                >
+                                    {"Floor " + (floorCount - i)}
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
         </div>
