@@ -1,14 +1,14 @@
-# Getting Started with Create React App
-
+# Elevator App
+Elevator App is a fun app that manages elevators efficiently in a multi
+stored building.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
+## Installation
 In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+to run the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
