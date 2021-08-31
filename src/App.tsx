@@ -1,26 +1,51 @@
 import React, {useState} from 'react';
-import classNames from 'classnames';
 import './App.css';
+import ElevatorSection from "./Components/ElevatorSection";
+import FloorSection from "./Components/FloorSection";
 
-function App() {
+const App = () => {
+    // total elevators count
+    // by default, there are three elevators
+    const [elevatorCount] = useState(3);
+
+    // total floors count
+    // by default, there are 20 floors
+    const [floorCount] = useState(20);
+
+    // floor positions of all elevators
+    // by default, all elevators are in the first floor
     const [positions, setPositions] = useState([1, 1, 1]);
 
-    const [elevatorCount] = useState(3);
-    const [floorCount] = useState(20);
-    const floorClickHandler = (e: React.MouseEvent, floorNo: number) => {
+    // Update elevator destination to clicked floor
+    const floorClickHandler = (floorNo: number) => {
         let minDiff = Infinity;
-        let index = 0;
-        positions.forEach((value, i) => {
-            let diff = Math.abs(floorNo - value);
+        let nearestElevatorIndex = 0;
+
+        // get the index of nearest elevator
+        positions.forEach((elevatorCurrentPosition, elevatorIndex) => {
+            let diff = Math.abs(floorNo - elevatorCurrentPosition);
             if (diff < minDiff) {
                 minDiff = diff;
-                index = i;
+                nearestElevatorIndex = elevatorIndex;
             }
         });
 
+        // set nearest elevator to current floor
         let newPositions = positions.slice();
-        newPositions[index] = floorNo;
+        newPositions[nearestElevatorIndex] = floorNo;
         setPositions(newPositions);
+    }
+
+    // props for elevator section
+    const elevatorSectionProps = {
+        elevatorCount,
+        positions
+    };
+
+    // props for floor section
+    const floorSectionProps = {
+        floorCount,
+        floorClickHandler
     }
 
     return (
@@ -30,37 +55,8 @@ function App() {
             </header>
 
             <div className="app__content">
-                <div className="app__elevator-section">
-                    {
-                        Array.from(Array(elevatorCount), (_, i) => {
-                            return (
-                                <div key={i} className="app__elevator-path">
-                                    <div
-                                        style={{marginBottom: 20 * (positions[i] - 1)}}
-                                        className={classNames(
-                                            "app__elevator app__elevator-" + (i + 1),
-                                            "app__elevator--floor-" + positions[i]
-                                        )}
-                                    >{"E" + (i + 1)}</div>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-                <div className="app__floor-section">
-                    {
-                        Array.from(Array(floorCount), (_, i) => {
-                            return (
-                                <div key={i}
-                                     className={"app__floor app__floor-" + (floorCount - i)}
-                                     onClick={(e) => floorClickHandler(e, floorCount - i)}
-                                >
-                                    {"Floor " + (floorCount - i)}
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+                <ElevatorSection {...elevatorSectionProps}/>
+                <FloorSection {...floorSectionProps} />
             </div>
         </div>
     );
