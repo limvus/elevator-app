@@ -1,9 +1,32 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {shallow, ShallowWrapper} from "enzyme";
+
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("Smoke test", () => {
+    let wrapper: ShallowWrapper;
+
+    beforeEach(() => {
+        wrapper = shallow(<App/>);
+    });
+
+    test("render the app title", () => {
+        expect(wrapper.find("h1").text()).toContain("Elevator App");
+    });
+
+    test("render the elevators", () => {
+        expect(
+            wrapper.find(".app__elevator-section")
+                .children()
+                .find(".app__elevator").length
+        ).toEqual(3);
+    })
+
+    test("render the floors", () => {
+        expect(
+            wrapper.find(".app__floor-section")
+                .children()
+                .find(".app__floor").length
+        ).toEqual(20);
+    });
 });
