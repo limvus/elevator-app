@@ -1,10 +1,11 @@
 import Floor from "./Floor";
 import Elevator from "./Elevator";
+import { SetStateAction } from "react";
 
 class ElevatorManager {
     constructor(
-        private state: any,
-        private setState: any
+        private state: { floors: Floor[]; elevators: Elevator[]; },
+        private setState: { (value: SetStateAction<{ floors: Floor[]; elevators: Elevator[]; }>): void; (arg0: any): void; }
     ) {}
 
     getElevatorCount(): number {
