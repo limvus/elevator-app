@@ -4,6 +4,7 @@ import ElevatorManager, {FloorFactory, ElevatorFactory} from "./elevator-manager
 import ElevatorSection from "./Components/ElevatorSection";
 import FloorSection from "./Components/FloorSection";
 import Floor from "./elevator-manager/Floor";
+import Controls from "./Components/Controls";
 
 const floors = (new FloorFactory()).createCollection(20);
 const elevators = (new ElevatorFactory()).createCollection(3, floors[0]);
@@ -30,6 +31,10 @@ const App = () => {
                     floors={elManager.getFloors()}
                     floorClickHandler = {(floor: Floor) => elManager.callNearestElevator(floor)}
                 />
+            </div>
+
+            <div className="app__footer">
+                <Controls elManager={elManager}/>
             </div>
         </div>
     );

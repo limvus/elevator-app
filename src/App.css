@@ -415,7 +415,8 @@ h1 {
     height: 20px;
     width: 25px;
     font-size: 12px;
-    transition: margin-bottom 0.3s 0.1s ease-out;
+    transition: margin-bottom 5s 0.1s ease-out;
+    animation-timing-function: linear;
 }
 
 .app__floor-section {
@@ -435,4 +436,16 @@ h1 {
 
 .app__floor:last-child {
     border-bottom: none;
+}
+
+.app__footer {
+    background: azure;
+    padding: 5px;
+}
+
+.app__footer button {
+    width: 25px;
+    height: 25px;
+    line-height: 15px;
+    margin: 5px;
 }

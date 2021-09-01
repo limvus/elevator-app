@@ -75,4 +75,39 @@ describe("ElevatorUnit is functioning properly", () => {
         // @ts-ignore
         expect(elevator2.prop('style').marginBottom).toEqual(20 * 5);
     });
+
+    test("clicking plus elevator button adds elevators", () => {
+        let plusElevatorButton = wrapper.find(".app__footer--elevator-plus");
+        let elevatorCount = wrapper.find(".app__elevator").length;
+        plusElevatorButton.simulate("click");
+        plusElevatorButton.simulate("click");
+        plusElevatorButton.simulate("click");
+        expect(wrapper.find(".app__elevator").length).toEqual(elevatorCount + 3);
+    });
+
+    test("clicking minus elevator button removes elevators", () => {
+        let minusElevatorButton = wrapper.find(".app__footer--elevator-minus");
+        let elevatorCount = wrapper.find(".app__elevator").length;
+        minusElevatorButton.simulate("click");
+        minusElevatorButton.simulate("click");
+        expect(wrapper.find(".app__elevator").length).toEqual(elevatorCount - 2);
+    });
+
+    test("clicking plus floor button adds floors", () => {
+        let plusFloorButton = wrapper.find(".app__footer--floor-plus");
+        let floorCount = wrapper.find(".app__floor").length;
+        plusFloorButton.simulate("click");
+        plusFloorButton.simulate("click");
+        plusFloorButton.simulate("click");
+        plusFloorButton.simulate("click");
+        plusFloorButton.simulate("click");
+        expect(wrapper.find(".app__floor").length).toEqual(floorCount + 5);
+    });
+
+    test("clicking minus floor button removes floors", () => {
+        let minusFloorButton = wrapper.find(".app__footer--floor-minus");
+        let floorCount = wrapper.find(".app__floor").length;
+        minusFloorButton.simulate("click");
+        expect(wrapper.find(".app__floor").length).toEqual(floorCount - 1);
+    });
 });
