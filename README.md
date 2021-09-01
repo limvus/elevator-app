@@ -1,5 +1,7 @@
 # ElevatorUnit App
-[![Actions Status](https://github.com/limvus/elevator-app/workflows/action.yml/badge.svg)](https://github.com/limvus/elevator-app/actions)
+[![Actions Status](https://github.com/limvus/elevator-app/workflows/CI/CD/badge.svg)](https://github.com/limvus/elevator-app/actions)
+[![codecov](https://codecov.io/gh/limvus/elevator-app/branch/master/graph/badge.svg)](https://codecov.
+io/gh/limvus/elevator-app)
 ElevatorUnit App is a fun app that manages elevators efficiently in a multi
 stored building. Right now the app is in early stage. Features right now are: 
 - 3 elevators
@@ -16,6 +18,7 @@ stored building. Right now the app is in early stage. Features right now are:
 
 ## System Requirements
 - node-12.x or higher
+- tested in [node-12.x, node-14.x, node-16.x]
 
 ## Installation
 ```
