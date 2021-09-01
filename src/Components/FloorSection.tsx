@@ -1,15 +1,16 @@
 import React from "react";
-import Floor from "./Floor";
+import FloorUnit from "./FloorUnit";
+import Floor from "../elevator-manager/Floor";
 
-const FloorSection = (props: { floorCount: number, floorClickHandler: any }) => {
-    const {floorCount} = props;
+const FloorSection = (props: { floors: Floor[], floorClickHandler: (floor: Floor) => void }) => {
+    const {floors, floorClickHandler} = props;
 
     return (
         <div className="app__floor-section">
             {
-                Array.from(Array(floorCount), (_, i) => {
-                    return <Floor key={i}  {...props} i={i}/>;
-                })
+                floors.map((floor: Floor, i: number) => {
+                   return <FloorUnit key={i} floor={floor} floorClickHandler={floorClickHandler}  />
+                }).reverse()
             }
         </div>
     );

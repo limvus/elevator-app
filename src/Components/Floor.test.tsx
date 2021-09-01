@@ -1,11 +1,13 @@
 import React from 'react';
 import {shallow, ShallowWrapper} from "enzyme";
 
-import Floor from "./Floor";
+import FloorUnit from "./FloorUnit";
+import {FloorFactory} from "../elevator-manager";
 
-describe("Floor Tests", () => {
+describe("FloorUnit Tests", () => {
     test("render the floor", () => {
-        let wrapper = shallow<ShallowWrapper>(<Floor floorCount={20} floorClickHandler={""} i={0}/>);
-        expect(wrapper.text()).toEqual("Floor " + 20);
+        let floor = (new FloorFactory()).create(0);
+        let wrapper = shallow<ShallowWrapper>(<FloorUnit floor={floor} floorClickHandler={() => {}} />);
+        expect(wrapper.text()).toEqual("FloorUnit " + 0);
     });
 });

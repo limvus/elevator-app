@@ -1,5 +1,5 @@
-# Elevator App
-Elevator App is a fun app that manages elevators efficiently in a multi
+# ElevatorUnit App
+ElevatorUnit App is a fun app that manages elevators efficiently in a multi
 stored building.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

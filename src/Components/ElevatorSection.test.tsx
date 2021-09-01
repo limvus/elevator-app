@@ -2,12 +2,15 @@ import React from 'react';
 import {mount, ReactWrapper} from "enzyme";
 
 import ElevatorSection from './ElevatorSection';
+import {ElevatorFactory, FloorFactory} from "../elevator-manager";
 
-describe("Elevator Section Tests", () => {
+describe("ElevatorUnit Section Tests", () => {
     let wrapper: ReactWrapper;
 
     beforeEach(() => {
-        wrapper = mount(<ElevatorSection elevatorCount={3} positions={[1, 1, 1]}/>);
+        let floor = (new FloorFactory()).create(0);
+        let elevators = (new ElevatorFactory()).createCollection(20, floor);
+        wrapper = mount(<ElevatorSection elevators={elevators}/>);
     });
 
     test("render elevators", () => {
@@ -21,13 +24,13 @@ describe("Elevator Section Tests", () => {
         }
     })
 
-    test("all elevators are on first floor at the start", () => {
+    test("all elevators are on zero floor at the start", () => {
         for (let i = 0; i < 3; i++) {
             expect(
                 wrapper.find(".app__elevator-section")
                     .find(".app__elevator-path")
-                    .find(".app__elevator-" + (i + 1))
-                    .hasClass("app__elevator--floor-1")
+                    .find(".app__elevator-" + (i))
+                    .hasClass("app__elevator--floor-0")
             ).toBeTruthy();
         }
     });
