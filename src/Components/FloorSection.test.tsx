@@ -9,11 +9,12 @@ describe("FloorUnit Section Tests", () => {
 
     beforeEach(() => {
         let floors = (new FloorFactory()).createCollection(20);
-        wrapper = mount(<FloorSection floors={floors} floorClickHandler={() => {}}/>);
+        wrapper = mount(<FloorSection floors={floors} floorClickHandler={() => {
+        }}/>);
     });
 
     test("render floors", () => {
-        for (let i; i < 20; i++) {
+        for (let i = 0; i < 20; i++) {
             expect(
                 wrapper.find(".app__floor-section")
                     .find(".app__floor-" + i)
